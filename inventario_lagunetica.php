@@ -144,6 +144,11 @@
 .b-editar{
       width: 50px;
       height: 30px;
+      background-color: #2e57af;
+}
+
+.b-editar:hover{
+   background-color: #2e57af;
 }
 </style>
 
@@ -164,70 +169,97 @@
                         <!-- table section -->
                         <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
+                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar artículo</b></span></button>
 
-                           <div class="container">
-                           <button class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar artículo</b></span></button>
+                           <?php 
+                           $host = "localhost"; 
+                           $user = "root";
+                           $pass = "";
+                           $db_name = "inventario_proveeduria";
 
-                                 <!-- Table starts here -->
-                                 <table class="table table-bordered table-striped align-middle">
-                                    <thead>
-                                    <tr>
-                                       <th>ID</th>
-                                       <th>Categoría</th>
-                                       <th>Nombre</th>
-                                       <th>Ud</th>
-                                       <th>Existencia</th>
-                                       <th>Acción</th>
-                                    </tr> 
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    # Include connection
-                                    require_once "./config.php";
+                           //Change the above code to match your server details
 
-                                    # Attempt select query execution
-                                    $sql = "SELECT * FROM articulos_lagunetica";
+                           $conn = new mysqli($host, $user, $pass, $db_name);
 
-                                    if ($result = mysqli_query($link, $sql)) {
-                                       if (mysqli_num_rows($result) > 0) {
-                                          $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                          $count = 1;
-                                          foreach ($rows as $row) { ?>
-                                          <tr>
-                                             <td><?= $count++; ?></td>
-                                             <td><?= $row["categoria"]; ?></td>
-                                             <td><?= $row["nombre"]; ?></td>
-                                             <td><?= $row["ud"]; ?></td>
-                                             <td><?= $row["existencia"]; ?></td>
-                                             <td>
-                                                <a href="./update_inventario_la.php?id=<?= $row["id"]; ?>" class="btn btn-primary b-editar btn-sm">
-                                                <i class="fa fa-pencil"></i>
-                                                </a>&nbsp;
-                                                <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">
-                                                <i class="fa fa-trash icon-delete"></i>
-                                                </a> 
-                                             </td>
-                                          </tr>
-                                          <?php
-                                          }
-                                          # Free result set
-                                          mysqli_free_result($result);
-                                       } else { ?>
-                                          <tr>
-                                          <td class="text-center text-danger fw-bold" colspan="9">No existen artículos</td>
-                                          </tr>
-                                    <?php
-                                       }
-                                    }
-                                    # Close connection
-                                    mysqli_close($link);
-                                    ?>
-                                    </tbody>
-                                 </table>
-                              </div>
+                           // Check connection
+                           if ($conn->connect_error) {
+                           die("Connection failed: " . $conn->connect_error);
+                           }
 
-                           </div>
+                           //Query to fetch all the data from country table.
+                           $query = "SELECT * FROM articulos_lagunetica";
+                           $result = $conn->query($query);
+                           ?>
+                           <!doctype html>
+                           <html lang="en">
+                              <head>
+                                 <!-- Required meta tags -->
+                                 <meta charset="utf-8">
+                                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                              </head>
+
+                              <style>
+    
+                              .table{
+                                 width: 100%;
+                              }
+                              </style>
+
+                              <body>
+                                 <!-- Awesome HTML code goes here -->
+                                       <div class="container" style="width: 100%;">
+                                          <table class="table table-hover table-light table-bordered" id="myTable">
+                                             <thead class="">
+                                                   <tr>
+                                                      <th scope="col">Id</th>
+                                                      <th scope="col">Categoria</th>
+                                                      <th scope="col">Nombre</th>
+                                                      <th scope="col">Ud</th>
+                                                      <th scope="col">Existencia</th>
+                                                      <th scope="col">Acción</th>
+                                                   </tr>
+                                             </thead>
+                                             <tbody>
+                                                   <?php  
+                                                      if ($result->num_rows > 0) {
+                                                         while($row = $result->fetch_assoc()) {
+                                                   ?>
+                                                      <tr>
+                                                         <td><?php echo $row['id'] ?></td>
+                                                         <td><?php echo $row['categoria'] ?></td>
+                                                         <td><?php echo $row['nombre'] ?></td>
+                                                         <td><?php echo $row['ud'] ?></td>
+                                                         <td><?php echo $row['existencia'] ?></td>
+                                                         <td>
+                                                            <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
+                                                            <i class="fa fa-pencil" style="color: #fff;"></i>
+                                                            </a>&nbsp;
+                                                            <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">
+                                                            <i class="fa fa-trash icon-delete"></i>
+                                                            </a>                                       
+                                                         </td>
+                                                      </tr>
+                                                   <?php } } ?>
+                                             </tbody> 
+                                          </table> 
+                                       </div>
+                                       
+                                 <!-- Optional JavaScript -->
+                                       <!-- jQuery first, then Popper.js, then Bootstrap JS, then DataTable, then script tag -->
+                                       
+                                       <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+                                       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+                                       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script> 
+                                       <script>
+                                          $(document).ready( function () {
+                                             $('#myTable').DataTable({responsive: true});
+                                          } );
+                                       </script>
+                              </body>
+                           </html>
+
                         </div>
+                     </div>
                      </div>
                   </div>
                </div>

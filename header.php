@@ -77,6 +77,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                      </li>
                      <br>
                      <li><a href="inventario.php"><i class="fa fa-book" style="color: #2e57af;"></i> <span>Inventario</span></a></li>
+                     <li><a href="prestamos.php"><i class="fa fa-exchange" style="color: #2e57af;"></i> <span>Préstamos</span></a></li>
                      <li><a href="inventario_lagunetica.php"><i class="fa fa-book" style="color: #2e57af;"></i> <span>Inventario Lagunetica</span></a></li>
                      <li><a href="categorias.php"><i class="fa fa-file-text" style="color: #2e57af;"></i> <span>Categorías</span></a></li>
                      <li><a href="proveedores.php"><i class="fa fa-truck" style="color: #2e57af;"></i> <span>Proveedores</span></a></li>
@@ -142,7 +143,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                        </div>
                                     </a>
                                  </li>
-                              </ul>
+                              </ul>                            
                               <ul class="user_profile_dd">
                                  <li style="background-color: #2e57af">
                                     <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/logo/admin.png" alt="#" /><span class="name_user"><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></span></a>

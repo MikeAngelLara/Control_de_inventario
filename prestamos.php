@@ -5,8 +5,8 @@
       require_once "./config.php";
 
       # Define variables and initialize with empty values
-      $nombre_err = $codigo_err = "";
-      $nombre = $codigo = "";
+      $nombre_err = $herramienta_err = $estado_err = $ubicacion_err = $devuelto_err = $observaciones_err ="";
+      $nombre = $herramienta = $estado = $ubicacion = $devuelto = $observaciones = "";
 
       # Processing form data when form is submitted
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,33 +19,75 @@
          }
       }
 
-
-      if (empty(trim($_POST["codigo"]))) {
-         $codigo_err = "This field is required.";
+      if (empty(trim($_POST["herramienta"]))) {
+         $herramienta_err = "This field is required.";
       } else {
-         $codigo = trim($_POST["codigo"]);
-         if (!ctype_alpha($codigo)) {
-            $codigo_err = "Please enter a valid age number";
+         $herramienta = ucfirst(trim($_POST["herramienta"]));
+         if (!ctype_alpha($herramienta)) {
+            $herramienta_err = "Invalid name format.";
          }
       }
 
+
+      if (empty(trim($_POST["estado"]))) {
+         $estado_err = "This field is required.";
+      } else {
+         $estado = trim($_POST["estado"]);
+         if (!ctype_alpha($estado)) {
+            $estado_err = "Please enter a valid age number";
+         }
+      }
+
+      if (empty(trim($_POST["ubicacion"]))) {
+        $ubicacion_err = "This field is required.";
+     } else {
+        $ubicacion = trim($_POST["ubicacion"]);
+        if (!ctype_alpha($ubicacion)) {
+           $ubicacion_err = "Please enter a valid age number";
+        }
+     }
+
+     if (empty(trim($_POST["devuelto"]))) {
+        $devuelto_err = "This field is required.";
+     } else {
+        $devuelto = trim($_POST["devuelto"]);
+        if (!ctype_alpha($devuelto)) {
+           $devuelto_err = "Please enter a valid age number";
+        }
+     }
+
+     if (empty(trim($_POST["observaciones"]))) {
+        $observaciones_err = "This field is required.";
+     } else {
+        $observaciones = trim($_POST["observaciones"]);
+        if (!ctype_alpha($observaciones)) {
+           $observaciones_err = "Please enter a valid age number";
+        }
+     }
+
+
       # Check input errors before inserting data into database
-      if (empty($nombre_err) && empty($codigo_err)) {
+      if (empty($nombre_err) && empty($herramienta_err) && empty($estado_err) && empty($ubicacion_err) && empty($devuelto_err) && empty($observaciones_err)) {
          # Preapre an insert statement
-         $sql = "INSERT INTO categorias (nombre, codigo) VALUES (?, ?)";
+         $sql = "INSERT INTO prestamos (nombre, herramienta, estado, ubicacion, devuelto, observaciones) VALUES (?, ?, ?, ?, ?, ?)";
 
          if ($stmt = mysqli_prepare($link, $sql)) {
             # Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_nombre, $param_codigo);
+            mysqli_stmt_bind_param($stmt, "ssssss", $param_nombre, $param_herramienta, $param_estado, $param_ubicacion, $param_devuelto, $param_observaciones);
 
             # Set parameters
             $param_nombre = $nombre;
-            $param_codigo = $codigo;
+            $param_herramienta = $herramienta;
+            $param_estado = $estado;
+            $param_ubicacion = $ubicacion;
+            $param_devuelto = $devuelto;
+            $param_observaciones = $observaciones;
+
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
-            echo "<script>" . "alert('Nueva categoría creada.');" . "</script>";
-            echo "<script>" . "window.location.href='./categorias.php'" . "</script>";
+            echo "<script>" . "alert('Nuevo préstamo creado.');" . "</script>";
+            echo "<script>" . "window.location.href='./prestamos.php'" . "</script>";
             exit;
             } else {
             echo "Ha ocurrido un error, intente más tarde";
@@ -61,7 +103,6 @@
       }
 ?>
 
-
 <style>
 .button-1 {
   border-radius: 4px;
@@ -71,13 +112,13 @@
   text-align: center;
   font-size: 20px;
   padding: 7px;
-  width: 250px;
+  width: 220px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 20px;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
-  padding-right: 30px; 
-  padding-left: 30px;
+  padding-right: 40px; 
+  padding-left: 40px;
 }
 
 .button-1{
@@ -97,7 +138,7 @@
 }
 
 .button-1:hover{
-  padding-right: 24px;
+  padding-right: 20px;
   padding-left:8px;
 }
 
@@ -131,14 +172,14 @@
 }
 </style>
 
-
                <!-- dashboard inner -->
                <div class="midde_cont">
                   <div class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2 style="text-align: center;"><b>Categorías</b></h2>                           </div>
+                              <h2 style="text-align: center;"><b>Préstamos</b></h2>
+                           </div>
                         </div>
                      </div>
 
@@ -148,7 +189,7 @@
                         <!-- table section -->
                         <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
-                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar artículo</b></span></button>
+                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar</b></span></button>
 
                            <?php 
                            $host = "localhost"; 
@@ -166,7 +207,7 @@
                            }
 
                            //Query to fetch all the data from country table.
-                           $query = "SELECT * FROM categorias";
+                           $query = "SELECT * FROM prestamos";
                            $result = $conn->query($query);
                            ?>
                            <!doctype html>
@@ -192,7 +233,12 @@
                                                    <tr>
                                                       <th scope="col">Id</th>
                                                       <th scope="col">Nombre</th>
-                                                      <th scope="col">Código</th>
+                                                      <th scope="col">Herramienta</th>
+                                                      <th scope="col">Estado</th>
+                                                      <th scope="col">Ubicación</th>
+                                                      <th scope="col">Devuelto</th>
+                                                      <th scope="col">Observaciones</th>
+                                                      <th scope="col">Fecha</th>
                                                       <th scope="col">Acción</th>
                                                    </tr>
                                              </thead>
@@ -204,7 +250,12 @@
                                                       <tr>
                                                          <td><?php echo $row['id'] ?></td>
                                                          <td><?php echo $row['nombre'] ?></td>
-                                                         <td><?php echo $row['codigo'] ?></td>
+                                                         <td><?php echo $row['herramienta'] ?></td>
+                                                         <td><?php echo $row['estado'] ?></td>
+                                                         <td><?php echo $row['ubicacion'] ?></td>
+                                                         <td><?php echo $row['devuelto'] ?></td>
+                                                         <td><?php echo $row['observaciones'] ?></td>
+                                                         <td><?php echo $row['fecha'] ?></td>
                                                          <td>
                                                             <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
                                                             <i class="fa fa-pencil" style="color: #fff;"></i>
@@ -243,14 +294,14 @@
          </div>
       </div>
 
- 
+
 
       <!-- Modal agregar -->
       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 28%; color: #2e57af; letter-spacing: 2px;"><b>Agregar categoría</b></h5>
+            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 28%; color: #2e57af; letter-spacing: 2px;"><b>Agregar artículo</b></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -264,9 +315,29 @@
                         <small class="text-danger"><?= $nombre_err; ?></small>
                         </div>
                         <div class="col-lg-6">
-                        <label for="codigo" class="form-label" style="color: #4b4b4b; font-size: 17px;"><b>Código</b></label>
-                        <input type="text" class="form-control" name="codigo" id="codigo" value="<?= $codigo; ?>">
-                        <small class="text-danger"><?= $codigo_err; ?></small>
+                        <label for="herramienta" class="form-label" style="color: #4b4b4b; font-size: 17px;"><b>Herramienta</b></label>
+                        <input type="text" class="form-control" name="herramienta" id="herramienta" value="<?= $herramienta; ?>">
+                        <small class="text-danger"><?= $herramienta_err; ?></small>
+                        </div>
+                        <div class="col-lg-6">
+                        <label for="estado" class="form-label" style="color: #4b4b4b; font-size: 17px;"><b>Estado</b></label>
+                        <input type="text" class="form-control" name="estado" id="estado" value="<?= $estado; ?>">
+                        <small class="text-danger"><?= $estado_err; ?></small>
+                        </div>
+                        <div class="col-lg-6">
+                        <label for="ubicacion" class="form-label" style="color: #4b4b4b; font-size: 17px;"><b>Ubicación</b></label>
+                        <input type="text" class="form-control" name="ubicacion" id="ubicacion" value="<?= $ubicacion; ?>">
+                        <small class="text-danger"><?= $ubicacion_err; ?></small>
+                        </div>
+                        <div class="col-lg-6">
+                        <label for="devuelto" class="form-label" style="color: #4b4b4b; font-size: 17px;"><b>Devuelto</b></label>
+                        <input type="text" class="form-control" name="devuelto" id="devuelto" value="<?= $devuelto; ?>">
+                        <small class="text-danger"><?= $devuelto_err; ?></small>
+                        </div>
+                        <div class="col-lg-6">
+                        <label for="observaciones" class="form-label" style="color: #4b4b4b; font-size: 17px;"><b>Observaciones</b></label>
+                        <input type="text" class="form-control" name="observaciones" id="observaciones" value="<?= $observaciones; ?>">
+                        <small class="text-danger"><?= $observaciones_err; ?></small>
                         </div>
 
                         <div class="col-lg-12" style="margin-left: 50%;">
@@ -293,11 +364,11 @@
                <h4 class="modal-title"><b>¿Estas seguro?</b></h4>	
             </div>
             <div class="modal-body" style="text-align: center;">
-               <p><b>Si eliminas esta categoría, será de manera definitiva!</b></p>
+               <p><b>Si eliminas este préstamo, será de manera definitiva!</b></p>
             </div>
             <div class="modal-footer justify-content-center">
                <button type="button" class="btn btn-secondary" data-dismiss="modal"><b>Cancelar</b></button>
-               <button type="button" class="btn btn-danger"><a style="color: #fff;" href="./delete_categorias.php?id=<?= $row["id"]; ?>"><b>Eliminar</b></a></button>
+               <button type="button" class="btn btn-danger"><a style="color: #fff;" href="./delete_prestamos.php?id=<?= $row["id"]; ?>"><b>Eliminar</b></a></button>
             </div>
          </div>
       </div>
