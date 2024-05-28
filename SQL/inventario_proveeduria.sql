@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2024 a las 18:33:18
+-- Tiempo de generación: 28-05-2024 a las 02:54:57
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -99,7 +99,8 @@ INSERT INTO `articulos` (`id`, `categoria`, `nombre`, `ud`, `existencia`) VALUES
 (62, 'MAQUINARIA', 'AIRE ACONDICIONADO TIPO SPLIT DE 36000 BTU ', 'UNIDAD', 2),
 (63, 'MAQUINARIA', 'COMPRESOR DE 5 TONELADA', 'UNIDAD', 2),
 (64, 'PLOMERIA', 'W.C. COMPLETO DE PORCELANA', 'UNIDAD', 2),
-(77, 'TELEFONOS', 'CABLETELEFONICO', 'METRO', 30);
+(77, 'TELEFONOS', 'CABLETELEFONICO', 'METRO', 30),
+(78, 'TELEFONOS', 'CAJETIN', 'UNIDAD', 3);
 
 -- --------------------------------------------------------
 
@@ -168,6 +169,33 @@ INSERT INTO `categorias` (`id`, `nombre`, `codigo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `prestamos`
+--
+
+CREATE TABLE `prestamos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `herramienta` varchar(255) NOT NULL,
+  `estado` varchar(255) NOT NULL,
+  `ubicacion` varchar(255) NOT NULL,
+  `devuelto` varchar(255) NOT NULL,
+  `observaciones` text NOT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`id`, `nombre`, `herramienta`, `estado`, `ubicacion`, `devuelto`, `observaciones`, `fecha`) VALUES
+(1, 'Juan', 'martillo', 'operativo', 'penal', 'no', '', '2024-05-23 18:26:33'),
+(2, 'Jose', 'Segueta', 'Fuera de servicio', 'POOL', 'si', 'devuelto roto', '2024-05-23 18:26:33'),
+(3, 'Miguel', 'Metro', 'operativo', 'dar', 'si', 'Todobien', '0000-00-00 00:00:00'),
+(4, 'Miguel', 'Metro', 'operativo', 'DEM', 'no', 'Todobien', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `proveedores`
 --
 
@@ -185,6 +213,28 @@ CREATE TABLE `proveedores` (
 
 INSERT INTO `proveedores` (`id`, `nombre`, `rif`, `direccion`, `telefonos`) VALUES
 (3, 'DEM CENTRAL	', 'G-200000287', 'AVENIDA FRANCISCO DE MIRANDA, CARACAS 1060, DISTRTO CAPITAL', '0212-2375874');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `salida`
+--
+
+CREATE TABLE `salida` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `herramienta` varchar(255) NOT NULL,
+  `ubicacion` varchar(255) NOT NULL,
+  `responsable` varchar(255) NOT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `salida`
+--
+
+INSERT INTO `salida` (`id`, `nombre`, `herramienta`, `ubicacion`, `responsable`, `fecha`) VALUES
+(1, 'CarlosSantana', 'Martillo', 'DEM', 'Ramiro', '2024-05-28 02:17:51');
 
 -- --------------------------------------------------------
 
@@ -229,9 +279,21 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `salida`
+--
+ALTER TABLE `salida`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -248,7 +310,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos_lagunetica`
@@ -263,10 +325,22 @@ ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT de la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `salida`
+--
+ALTER TABLE `salida`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
