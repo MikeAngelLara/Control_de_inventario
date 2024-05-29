@@ -97,7 +97,7 @@ header .current-date{
                   <div class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
-                           <div class="page_title">
+                           <div class="page_title"> 
                               <h2>Principal</h2>
                            </div>
                         </div>
@@ -165,7 +165,7 @@ header .current-date{
                                  </div>
                               </div>                       
                               <div class="counter_no">
-                                 <div>
+                                 <div data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <p class="total_no" style="color: black;">Bitácora</p>
                                     <p class="head_couter" style="color: black;">**** cambios en el inventario</p>
                                  </div>
@@ -248,10 +248,29 @@ header .current-date{
             </div>
 
 
+      <!-- Modal Bitacora -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+               <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 38%; color: #2e57af; letter-spacing: 2px;"><b>Bitácora</b></h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                     <div>
+                     <!-- form starts here -->
+                     <form style="height: 100%; wight: 100%;" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="bg-light p-4 shadow-sm" method="post" novalidate>
+                        <div class="row gy-3" >
 
-               
-
-
+                        </div>
+                     </form>
+                     <!-- form ends here -->
+                     </div>
+               </div>
+            </div>
+         </div>
+      </div>
+         
 
                <!-- end dashboard inner -->
             </div>
