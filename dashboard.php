@@ -158,14 +158,14 @@ header .current-date{
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4">
-                           <div class="full counter_section margin_bottom_30 cuadros_dash">
+                           <div class="full counter_section margin_bottom_30 cuadros_dash" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="cursor: pointer;">
                               <div class="couter_icon">
                                  <div> 
                                     <i class="fa fa-file-text" style="color: #2e57af;"></i>
                                  </div>
                               </div>                       
                               <div class="counter_no">
-                                 <div data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                 <div>
                                     <p class="total_no" style="color: black;">Bitácora</p>
                                     <p class="head_couter" style="color: black;">**** cambios en el inventario</p>
                                  </div>
