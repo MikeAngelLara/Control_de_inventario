@@ -223,6 +223,7 @@
     
                               .table{
                                  width: 100%;
+                                 color: black;
                               }
                               </style>
 
@@ -232,15 +233,15 @@
                                           <table class="table table-hover table-light table-bordered" id="myTable">
                                              <thead class="">
                                                    <tr>
-                                                      <th scope="col">Id</th>
-                                                      <th scope="col">Nombre</th>
-                                                      <th scope="col">Herramienta</th>
-                                                      <th scope="col">Estado</th>
-                                                      <th scope="col">Ubicación</th>
-                                                      <th scope="col">Devuelto</th>
-                                                      <th scope="col">Observaciones</th>
-                                                      <th scope="col">Fecha</th>
-                                                      <th scope="col">Acción</th>
+                                                      <th scope="col"><b>Id</b></th>
+                                                      <th scope="col"><b>Nombre</b></th>
+                                                      <th scope="col"><b>Herramienta</b></th>
+                                                      <th scope="col"><b>Estado</b></th>
+                                                      <th scope="col"><b>Ubicación</b></th>
+                                                      <th scope="col"><b>Devuelto</b></th>
+                                                      <th scope="col"><b>Observaciones</b></th>
+                                                      <th scope="col"><b>Fecha</b></th>
+                                                      <th scope="col"><b>Acción</b></th>
                                                    </tr>
                                              </thead>
                                              <tbody>

@@ -170,7 +170,7 @@
                         <!-- table section -->
                         <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
-                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar artículo</b></span></button>
+                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar</b></span></button>
                            <div class="btn btn-primary" style="background-color: #2e57af; border: none; width: 60px;"><a href="./GenerarPDF/Articulos.php" style="color:#FFF; text-decoration:none;" target="_blank"><img src="./images/logo/pdf.png" alt="" style="width: 25px;"></a></div>
 
                            <?php 
@@ -204,21 +204,22 @@
     
                               .table{
                                  width: 100%;
+                                 color: black;
                               }
                               </style>
 
-                              <body>
+                              <body style="width: 100%;">
                                  <!-- Awesome HTML code goes here -->
                                        <div class="container" style="width: 100%;">
                                           <table class="table table-hover table-light table-bordered" id="myTable">
                                              <thead class="">
                                                    <tr>
-                                                      <th scope="col">Id</th>
-                                                      <th scope="col">Categoria</th>
-                                                      <th scope="col">Nombre</th>
-                                                      <th scope="col">Ud</th>
-                                                      <th scope="col">Existencia</th>
-                                                      <th scope="col">Acción</th>
+                                                      <th scope="col"><b>Id</b></th>
+                                                      <th scope="col"><b>Categoria</b></th>
+                                                      <th scope="col"><b>Nombre</b></th>
+                                                      <th scope="col"><b>Ud</b></th>
+                                                      <th scope="col"><b>Existencia</b></th>
+                                                      <th scope="col"><b>Acción</b></th>
                                                    </tr>
                                              </thead>
                                              <tbody>
@@ -247,8 +248,6 @@
                                        </div>
                                        
                                  <!-- Optional JavaScript -->
-                                       <!-- jQuery first, then Popper.js, then Bootstrap JS, then DataTable, then script tag -->
-                                       
                                        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
                                        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
                                        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script> 

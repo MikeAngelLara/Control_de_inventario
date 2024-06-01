@@ -169,7 +169,7 @@
                         <!-- table section -->
                         <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
-                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar artículo</b></span></button>
+                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar</b></span></button>
                            <div class="btn btn-primary" style="background-color: #2e57af; border: none; width: 60px;"><a href="./GenerarPDF/Proveedores.php" style="color:#FFF; text-decoration:none;" target="_blank"><img src="./images/logo/pdf.png" alt="" style="width: 25px;"></a></div>
 
                            <?php 
@@ -203,6 +203,7 @@
     
                               .table{
                                  width: 100%;
+                                 color: black;
                               }
                               </style>
 
@@ -212,12 +213,12 @@
                                           <table class="table table-hover table-light table-bordered" id="myTable">
                                              <thead class="">
                                                    <tr>
-                                                      <th scope="col">Id</th>
-                                                      <th scope="col">Nombre</th>
-                                                      <th scope="col">RIF</th>
-                                                      <th scope="col">Dirección</th>
-                                                      <th scope="col">Telefonos</th>
-                                                      <th scope="col">Acción</th>
+                                                      <th scope="col"><b>Id</b></th>
+                                                      <th scope="col"><b>Nombre</b></th>
+                                                      <th scope="col"><b>RIF</b></th>
+                                                      <th scope="col"><b>Dirección</b></th>
+                                                      <th scope="col"><b>Telefonos</b></th>
+                                                      <th scope="col"><b>Acción</b></th>
                                                    </tr>
                                              </thead>
                                              <tbody>

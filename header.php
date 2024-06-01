@@ -84,6 +84,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                      <br>
                      <li><a href="salida.php"><i class="fa fa-arrow-right" style="color: #2e57af;"></i> <span>Salida</span></a></li>
                      <br>
+
+
+
+                     <!--
                      <li><a href="tablas_plantilla.php"><i class="fa fa-table" style="color: #2e57af;"></i> <span>tablas plantilla</span></a></li>
                      <li><a href="widgets.php"><i class="fa fa-clock-o" style="color: #2e57af;"></i> <span>Widgets</span></a></li>
                      <li>
@@ -120,6 +124,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                      </li>
                      <li><a href="map.php"><i class="fa fa-map" style="color: #2e57af;"></i> <span>Map</span></a></li>
                      <li><a href="charts.php"><i class="fa fa-bar-chart-o" style="color: #2e57af;"></i> <span>Charts</span></a></li>
+                     -->
+
+
+
+
+
                   </ul>
                </div>
             </nav>

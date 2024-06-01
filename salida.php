@@ -171,7 +171,7 @@
                         <!-- table section -->
                         <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
-                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar salida</b></span></button>
+                           <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar</b></span></button>
                            <div class="btn btn-primary" style="background-color: #2e57af; border: none; width: 60px;"><a href="./GenerarPDF/Salida.php" style="color:#FFF; text-decoration:none;" target="_blank"><img src="./images/logo/pdf.png" alt="" style="width: 25px;"></a></div>
 
                            <?php 
@@ -202,9 +202,9 @@
                               </head>
 
                               <style>
-    
                               .table{
                                  width: 100%;
+                                 color: black;
                               }
                               </style>
 
@@ -214,13 +214,13 @@
                                           <table class="table table-hover table-light table-bordered" id="myTable">
                                              <thead class="">
                                                    <tr>
-                                                      <th scope="col">Id</th>
-                                                      <th scope="col">Nombre</th>
-                                                      <th scope="col">Herramienta</th>
-                                                      <th scope="col">Ubicación</th>
-                                                      <th scope="col">Responsable</th>
-                                                      <th scope="col">Fecha</th>
-                                                      <th scope="col">Acción</th>
+                                                      <th scope="col"><b>Id</b></th>
+                                                      <th scope="col"><b>Nombre</b></th>
+                                                      <th scope="col"><b>Herramienta</b></th>
+                                                      <th scope="col"><b>Ubicación</b></th>
+                                                      <th scope="col"><b>Responsable</b></th>
+                                                      <th scope="col"><b>Fecha</b></th>
+                                                      <th scope="col"><b>Acción</b></th>
                                                    </tr>
                                              </thead>
                                              <tbody>
