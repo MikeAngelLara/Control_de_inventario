@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2024 a las 04:18:52
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 04-06-2024 a las 23:36:00
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,16 +33,16 @@ CREATE TABLE `articulos` (
   `nombre` varchar(255) NOT NULL,
   `ud` varchar(255) NOT NULL,
   `existencia` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `articulos`
 --
 
 INSERT INTO `articulos` (`id`, `categoria`, `nombre`, `ud`, `existencia`) VALUES
-(1, 'ARTICULOS DE LIMPIEZA', 'PAPEL HIHIENICO P/DISPENSADOR', 'UNIDAD', 10),
-(3, 'ARTICULOS DE LIMPIEZA', 'AMBIENTADOR GLADE', 'UNIDAD', 7),
-(4, 'ARTICULOS DE LIMPIEZA', 'BAYGON BAYER', 'UNIDAD', 5),
+(1, 'ARTICULOS DE LIMPIEZA', 'PAPEL HIHIENICO DISPENSADOR', 'UNIDAD', 10),
+(3, 'ARTICULOS DE LIMPIEZA', 'AMBIENTADOR GLADE', 'UNIDAD', 2),
+(4, 'ARTICULOS DE LIMPIEZA', 'BAYGON BAYER', 'UNIDAD', 3),
 (5, 'ARTICULOS DE LIMPIEZA', 'DESINFECTANTE', 'GALON', 4),
 (7, 'ARTICULOS DE LIMPIEZA', 'VASOS PLASTICO GRANDE', 'PAQUETE', 5),
 (8, 'ARTICULOS DE LIMPIEZA', 'CLORO ', 'GALON', 8),
@@ -100,7 +100,11 @@ INSERT INTO `articulos` (`id`, `categoria`, `nombre`, `ud`, `existencia`) VALUES
 (63, 'MAQUINARIA', 'COMPRESOR DE 5 TONELADA', 'UNIDAD', 2),
 (64, 'PLOMERIA', 'W.C. COMPLETO DE PORCELANA', 'UNIDAD', 2),
 (77, 'TELEFONOS', 'CABLETELEFONICO', 'METRO', 30),
-(78, 'TELEFONOS', 'CAJETIN', 'UNIDAD', 3);
+(78, 'TELEFONOS', 'CAJETIN', 'UNIDAD', 3),
+(79, 'TELEFONOS', 'CABLE TELEFONICO', 'METRO', 10),
+(80, 'ARTICULOS DE LIMPIEZA', 'CLORO MAX', 'GALON', 10),
+(81, 'ARTICULOS DE LIMPIEZA', 'SUAVITEL', 'GALON', 3),
+(82, 'ARTICULOS DE LIMPIEZA', 'coleto', 'UNIDAD', 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +118,7 @@ CREATE TABLE `articulos_lagunetica` (
   `nombre` varchar(255) NOT NULL,
   `ud` varchar(255) NOT NULL,
   `existencia` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `articulos_lagunetica`
@@ -124,17 +128,19 @@ INSERT INTO `articulos_lagunetica` (`id`, `categoria`, `nombre`, `ud`, `existenc
 (12, 'ARTICULOS DE LIMPIEZA', 'LANILLAS', 'UNIDAD', 2),
 (15, 'ARTICULOS DE LIMPIEZA', 'CERA ACRILICA BLANCA', 'GALON', 3),
 (17, 'ARTICULOS DE LIMPIEZA', 'BOLSAS PLASTICA PARA PAPELERA DE 15KG', 'UNIDAD', 3),
-(18, 'ARTICULOS DE LIMPIEZA', 'CEPILLO DE PULIDORA DE 13 P', 'UNIDAD', 0),
+(18, 'ARTICULOS DE LIMPIEZA', 'CEPILLO DE PULIDORA DE 13 P', 'UNIDAD', 2),
 (19, 'ARTICULOS DE LIMPIEZA', 'CEPILLO DE PULIDORA DE 13 P', 'UNIDAD', 2),
 (22, 'CARATULAS Y FICHAS', 'PLACAS PARA IDENTIFICAR LAS OFICINAS DE LA DEM', 'UNIDAD', 3),
 (26, 'INSUMOS DE COMPUTACION', 'DISCO DURO DE 120GB', 'UNIDAD', 3),
 (36, 'ELECTRICIDAD', 'CABLE NO. 12 ', 'METRO', 40),
 (39, 'FERRETERIA', 'MANTO ASFALTICO', 'ROLLO', 2),
-(43, 'FERRETERIA', 'GRIFO DE LAVAMANO', 'UNIDAD', 2),
+(43, 'FERRETERIA', 'GRIFODELAVAMANO', 'UNIDAD', 2),
 (49, 'LIBROS', 'LIBROS DE ACTAS DE 100 FOLIOS', 'UNIDAD', 2),
 (61, 'MATERIAL DE OFICINA', 'SELLO RECTANGULAR GRANDE', 'UNIDAD', 5),
 (64, 'PLOMERIA', 'W.C. COMPLETO DE PORCELANA', 'UNIDAD', 2),
-(69, 'TELEFONOS', 'CAJETIN', 'UNIDAD', 3);
+(69, 'TELEFONOS', 'CAJETIN', 'UNIDAD', 3),
+(70, 'TELEFONOS', 'CABLE TELEFONICO', 'METRO', 10),
+(71, 'FERRETERIA', 'GRIFO', 'UNIDAD', 2);
 
 -- --------------------------------------------------------
 
@@ -147,16 +153,15 @@ CREATE TABLE `bitacora` (
   `nombre` varchar(255) NOT NULL,
   `fecha_accion` datetime NOT NULL,
   `id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `bitacora`
 --
 
 INSERT INTO `bitacora` (`id`, `nombre`, `fecha_accion`, `id_usuario`) VALUES
-(2, 'Cambio de Contrasena', '2024-06-05 04:11:13', 3),
-(3, 'Cambio de Contrasena', '2024-06-05 04:13:23', 3),
-(4, 'Cambio de Contrasena', '2024-06-04 22:17:23', 3);
+(34, 'Cierre de sesión', '2024-06-04 23:34:21', 3),
+(35, 'Inicio de Sesion', '2024-06-04 23:34:25', 3);
 
 -- --------------------------------------------------------
 
@@ -168,7 +173,7 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `codigo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -203,17 +208,16 @@ CREATE TABLE `prestamos` (
   `devuelto` varchar(255) NOT NULL,
   `observaciones` text NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prestamos`
 --
 
 INSERT INTO `prestamos` (`id`, `nombre`, `herramienta`, `estado`, `ubicacion`, `devuelto`, `observaciones`, `fecha`) VALUES
-(1, 'Juan', 'martillo', 'operativo', 'penal', 'no', '', '2024-05-23 18:26:33'),
-(2, 'Jose', 'Segueta', 'Fuera de servicio', 'POOL', 'si', 'devuelto roto', '2024-05-23 18:26:33'),
-(3, 'Miguel', 'Metro', 'operativo', 'dar', 'si', 'Todobien', '0000-00-00 00:00:00'),
-(4, 'Miguel', 'Metro', 'operativo', 'DEM', 'no', 'Todobien', '0000-00-00 00:00:00');
+(5, 'Carlos Martinez', 'Pala y pico', 'Funcional', 'POOL', 'no', 'Entregado de manera intacta', '0000-00-00 00:00:00'),
+(6, 'Miguel Lara', 'Metro de color negro', 'Funcional', 'POOL', 'no', 'Estar pendiente', '0000-00-00 00:00:00'),
+(7, 'Luis', 'Cepillo', 'operativo', 'DEM', 'si', 'Entregado de manera intacta', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -227,7 +231,7 @@ CREATE TABLE `proveedores` (
   `rif` varchar(255) NOT NULL,
   `direccion` varchar(300) NOT NULL,
   `telefonos` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -249,14 +253,17 @@ CREATE TABLE `salida` (
   `ubicacion` varchar(255) NOT NULL,
   `responsable` varchar(255) NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `salida`
 --
 
 INSERT INTO `salida` (`id`, `nombre`, `herramienta`, `ubicacion`, `responsable`, `fecha`) VALUES
-(1, 'CarlosSantana', 'Martillo', 'DEM', 'Ramiro', '2024-05-28 02:17:51');
+(1, 'CarlosSantana', 'Martillo', 'DEM', 'Ramiro', '2024-05-28 02:17:51'),
+(2, 'Miguel Lara', 'Pala y pico', 'POOL', 'RAMIRO DIAZ', '0000-00-00 00:00:00'),
+(3, 'Luis Perez', 'Destornillador', 'POOL', 'RAMIRO DIAZ', '0000-00-00 00:00:00'),
+(4, 'Miguel', 'Cepillo', 'DEM', 'RAMIRO DIAZ', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -269,15 +276,14 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(3, 'Administrador', '$2y$10$XeAF7h4kTpqrAs2xh0km1uoUoaRxOfIgwHj1OdVEgxs8LuohP4NY.', '0000-00-00 00:00:00'),
-(8, 'Administrador2', '$2y$10$Bv9TRPreC3xIjnh1zSJjZ.CcpbkPfKHRRdngbZnPYbnyXd/z52QR.', '0000-00-00 00:00:00');
+(3, 'Administrador', '$2y$10$XeAF7h4kTpqrAs2xh0km1uoUoaRxOfIgwHj1OdVEgxs8LuohP4NY.', '0000-00-00 00:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -340,49 +346,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos_lagunetica`
 --
 ALTER TABLE `articulos_lagunetica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `salida`
 --
 ALTER TABLE `salida`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
