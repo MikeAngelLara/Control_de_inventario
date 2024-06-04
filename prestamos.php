@@ -259,7 +259,7 @@
                                                          <td><?php echo $row['observaciones'] ?></td>
                                                          <td><?php echo $row['fecha'] ?></td>
                                                          <td>
-                                                            <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
+                                                            <a href="./update_prestamos.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
                                                             <i class="fa fa-pencil" style="color: #fff;"></i>
                                                             </a>&nbsp;
                                                             <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">

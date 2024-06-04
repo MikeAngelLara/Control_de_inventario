@@ -148,7 +148,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                  <li style="background-color: #2e57af">
                                     <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/logo/admin.png" alt="#" /><span class="name_user"><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></span></a>
                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="perfil.php">Mi perfil</a>
                                        <a class="dropdown-item" href="cambiar_contraseña.php">Cambiar <br> contraseña</a>
                                        <a class="dropdown-item" href="logout.php"><span>Cerrar sesión</span> <i class="fa fa-sign-out"></i></a>
                                     </div>

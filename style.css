@@ -754,7 +754,7 @@ a:focus {
 
 .icon_info ul.user_profile_dd li div a {
     font-size: 15px;
-    color: #15283c;
+    color: #2e57af;
     padding: 4px 15px;
     border-bottom: none;
     line-height: normal;
@@ -762,7 +762,7 @@ a:focus {
 
 .icon_info ul.user_profile_dd li div a span {
     font-size: 13px;
-    color: #15283c;
+    color: #2e57af;
     font-weight: normal;
     padding: 0;
     transition: all .3s ease-in-out;
@@ -771,7 +771,7 @@ a:focus {
 
 .icon_info ul.user_profile_dd li div a:hover,
 .icon_info ul.user_profile_dd li div a:focus {
-    background: #243147;
+    background: #2e57af;
     color: #fff;
 }
 
@@ -789,7 +789,7 @@ a:focus {
     padding: 10px 6px;
     margin: 0;
     font-size: 15px;
-    color: #212529;
+    color: #2e57af;
     text-align: left;
     list-style: none;
     background-color: #fff;
@@ -824,7 +824,7 @@ span {
 #sidebar {
     min-width: 280px;
     max-width: 280px;
-    background-color: #15283c;
+    background-color: #2e57af;
     color: #fff;
     transition: all 0.3s;
     position: relative;

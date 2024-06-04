@@ -233,7 +233,7 @@
                                                          <td><?php echo $row['ud'] ?></td>
                                                          <td><?php echo $row['existencia'] ?></td>
                                                          <td>
-                                                            <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
+                                                            <a href="./update_inventario_la.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
                                                             <i class="fa fa-pencil" style="color: #fff;"></i>
                                                             </a>&nbsp;
                                                             <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">

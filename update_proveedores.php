@@ -89,7 +89,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     $id = trim($_GET["id"]);
  
     # Prepare a select statement
-    $sql = "SELECT * FROM articulos WHERE id = ?";
+    $sql = "SELECT * FROM proveedores WHERE id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       # Bind variables to the prepared statement as parameters
