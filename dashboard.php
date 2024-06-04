@@ -185,8 +185,8 @@ header .current-date{
                         <div class="col-md-6">
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head" style="background-color: #2e57af;">
-                                 <div style="color: white; text-align: center; font-size: 15px;">
-                                    <h2 style="font-size: 22px;">Mapa</h2>
+                                 <div style="text-align: center; font-size: 15px;">
+                                    <h2 style="font-size: 22px; color: white;">Mapa</h2>
                                  </div>
                               </div>
                               <div class="full inner_elements">
@@ -204,8 +204,8 @@ header .current-date{
                         <div class="col-md-6">
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head" style="background-color: #2e57af;">
-                                 <div style="color: white; text-align: center; font-size: 15px;">
-                                    <h2 style="font-size: 22px;">Calendario</h2>
+                                 <div style="text-align: center; font-size: 15px;">
+                                    <h2 style="font-size: 22px; color: white;">Calendario</h2>
                                  </div>
                               </div>
                               <div class="full inner_elements">

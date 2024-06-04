@@ -171,6 +171,7 @@
                            <div class="white_shd full margin_bottom_30">
                            <button style="margin-left: 145px;" class="button-1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><b>Agregar</b></span></button>
                            <div class="btn btn-primary" style="background-color: #2e57af; border: none; width: 60px;"><a href="./GenerarPDF/Articulos_Lagunetica.php" style="color:#FFF; text-decoration:none;" target="_blank"><img src="./images/logo/pdf.png" alt="" style="width: 25px;"></a></div>
+                           <div class="btn btn-primary" style="background-color: #2e57af; border: none; width: 60px;"><a href="./GenerarPDF/Articulos.php" style="color:#FFF; text-decoration:none;" target="_blank"><img src="./images/logo/excel.png" alt="" style="width: 25px;"></a></div>
 
                            <?php 
                            $host = "localhost"; 
