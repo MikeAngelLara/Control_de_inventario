@@ -1,4 +1,6 @@
-<?php include_once 'header.php';?> 
+<?php include_once 'header.php';
+date_default_timezone_set('America/Caracas');
+?> 
 
 <?php
       # Include connection
@@ -14,18 +16,12 @@
          $nombre_err = "This field is required.";
       } else {
          $nombre = ucfirst(trim($_POST["nombre"]));
-         if (!ctype_alpha($nombre)) {
-            $nombre_err = "Invalid name format.";
-         }
       }
 
       if (empty(trim($_POST["rif"]))) {
          $rif_err = "This field is required.";
       } else {
          $rif = ucfirst(trim($_POST["rif"]));
-         if (!ctype_alpha($rif)) {
-            $rif_err = "Invalid name format.";
-         }
       }
 
 
@@ -33,9 +29,6 @@
          $direccion_err = "This field is required.";
       } else {
          $direccion = trim($_POST["direccion"]);
-         if (!ctype_alpha($direccion)) {
-            $direccion_err = "Please enter a valid age number";
-         }
       }
 
 
@@ -43,9 +36,6 @@
          $telefonos_err = "This field is required.";
       } else {
          $telefonos = trim($_POST["telefonos"]);
-         if (!ctype_digit($telefonos)) {
-            $telefonos_err = "Please enter a valid age number";
-         }
       }
 
 
@@ -66,6 +56,15 @@
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
+
+               // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "proveedor añadido";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
             echo "<script>" . "alert('Nuevo proveedor creado.');" . "</script>";
             echo "<script>" . "window.location.href='./proveedores.php'" . "</script>";
             exit;
@@ -212,7 +211,7 @@
                                        <div class="container" style="width: 100%;">
                                           <table class="table table-hover table-light table-bordered" id="myTable">
                                              <thead class="">
-                                                   <tr>
+                                                   <tr> 
                                                       <th scope="col"><b>Id</b></th>
                                                       <th scope="col"><b>Nombre</b></th>
                                                       <th scope="col"><b>RIF</b></th>
@@ -233,7 +232,7 @@
                                                          <td><?php echo $row['direccion'] ?></td>
                                                          <td><?php echo $row['telefonos'] ?></td>
                                                          <td>
-                                                            <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
+                                                            <a href="./update_proveedores.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
                                                             <i class="fa fa-pencil" style="color: #fff;"></i>
                                                             </a>&nbsp;
                                                             <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">

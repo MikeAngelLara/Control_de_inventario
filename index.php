@@ -62,6 +62,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "Inicio de Sesion";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
                             
                             // Redirect user to welcome page
                             header("location: dashboard.php");

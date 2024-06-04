@@ -1,4 +1,6 @@
-<?php include_once 'header.php';?> 
+<?php include_once 'header.php';
+date_default_timezone_set('America/Caracas');
+?> 
 
 <?php
       # Include connection
@@ -14,18 +16,12 @@
          $categoria_err = "This field is required.";
       } else {
          $categoria = ucfirst(trim($_POST["categoria"]));
-         if (!ctype_alpha($categoria)) {
-            $categoria_err = "Invalid name format.";
-         }
       }
 
       if (empty(trim($_POST["nombre"]))) {
          $nombre_err = "This field is required.";
       } else {
          $nombre = ucfirst(trim($_POST["nombre"]));
-         if (!ctype_alpha($nombre)) {
-            $nombre_err = "Invalid name format.";
-         }
       }
 
 
@@ -33,19 +29,13 @@
          $ud_err = "This field is required.";
       } else {
          $ud = trim($_POST["ud"]);
-         if (!ctype_alpha($ud)) {
-            $ud_err = "Please enter a valid age number";
-         }
       }
 
 
       if (empty(trim($_POST["existencia"]))) {
          $existencia_err = "This field is required.";
       } else {
-         $existencia = trim($_POST["existencia"]);
-         if (!ctype_digit($existencia)) {
-            $existencia_err = "Please enter a valid age number";
-         }
+         $existencia = $_POST["existencia"];
       }
 
 
@@ -66,6 +56,15 @@
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
+
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "articulo añadido a lagunetica";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
             echo "<script>" . "alert('Nuevo artículo creado.');" . "</script>";
             echo "<script>" . "window.location.href='./inventario_lagunetica.php'" . "</script>";
             exit;
@@ -212,7 +211,7 @@
                                        <div class="container" style="width: 100%;">
                                           <table class="table table-hover table-light table-bordered" id="myTable">
                                              <thead class="">
-                                                   <tr>
+                                                   <tr> 
                                                       <th scope="col"><b>Id</b></th>
                                                       <th scope="col"><b>Categoria</b></th>
                                                       <th scope="col"><b>Nombre</b></th>

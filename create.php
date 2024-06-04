@@ -64,6 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       # Execute the statement
       if (mysqli_stmt_execute($stmt)) {
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "Create";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
         echo "<script>" . "alert('Nuevo artículo creado.');" . "</script>";
         echo "<script>" . "window.location.href='./inventario.php'" . "</script>";
         exit;

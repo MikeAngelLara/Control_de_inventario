@@ -1,4 +1,6 @@
-<?php include_once 'header.php';?> 
+<?php include_once 'header.php';
+date_default_timezone_set('America/Caracas');
+?> 
 
 <?php
       # Include connection
@@ -14,18 +16,12 @@
          $nombre_err = "This field is required.";
       } else {
          $nombre = ucfirst(trim($_POST["nombre"]));
-         if (!ctype_alpha($nombre)) {
-            $nombre_err = "Invalid name format.";
-         }
       }
 
       if (empty(trim($_POST["herramienta"]))) {
          $herramienta_err = "This field is required.";
       } else {
          $herramienta = ucfirst(trim($_POST["herramienta"]));
-         if (!ctype_alpha($herramienta)) {
-            $herramienta_err = "Invalid name format.";
-         }
       }
 
 
@@ -33,36 +29,24 @@
          $estado_err = "This field is required.";
       } else {
          $estado = trim($_POST["estado"]);
-         if (!ctype_alpha($estado)) {
-            $estado_err = "Please enter a valid age number";
-         }
       }
 
       if (empty(trim($_POST["ubicacion"]))) {
         $ubicacion_err = "This field is required.";
      } else {
         $ubicacion = trim($_POST["ubicacion"]);
-        if (!ctype_alpha($ubicacion)) {
-           $ubicacion_err = "Please enter a valid age number";
-        }
      }
 
      if (empty(trim($_POST["devuelto"]))) {
         $devuelto_err = "This field is required.";
      } else {
         $devuelto = trim($_POST["devuelto"]);
-        if (!ctype_alpha($devuelto)) {
-           $devuelto_err = "Please enter a valid age number";
-        }
      }
 
      if (empty(trim($_POST["observaciones"]))) {
         $observaciones_err = "This field is required.";
      } else {
         $observaciones = trim($_POST["observaciones"]);
-        if (!ctype_alpha($observaciones)) {
-           $observaciones_err = "Please enter a valid age number";
-        }
      }
 
 
@@ -86,6 +70,15 @@
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
+
+               // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "Prestamo añadido";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
             echo "<script>" . "alert('Nuevo préstamo creado.');" . "</script>";
             echo "<script>" . "window.location.href='./prestamos.php'" . "</script>";
             exit;
@@ -249,7 +242,7 @@
                                                       if ($result->num_rows > 0) {
                                                          while($row = $result->fetch_assoc()) {
                                                    ?>
-                                                      <tr>
+                                                      <tr> 
                                                          <td><?php echo $row['id'] ?></td>
                                                          <td><?php echo $row['nombre'] ?></td>
                                                          <td><?php echo $row['herramienta'] ?></td>
@@ -259,7 +252,7 @@
                                                          <td><?php echo $row['observaciones'] ?></td>
                                                          <td><?php echo $row['fecha'] ?></td>
                                                          <td>
-                                                            <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
+                                                            <a href="./update_prestamos.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
                                                             <i class="fa fa-pencil" style="color: #fff;"></i>
                                                             </a>&nbsp;
                                                             <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">
@@ -303,7 +296,7 @@
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 28%; color: #2e57af; letter-spacing: 2px;"><b>Agregar artículo</b></h5>
+            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 28%; color: #2e57af; letter-spacing: 2px;"><b>Agregar préstamo</b></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

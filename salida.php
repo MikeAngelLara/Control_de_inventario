@@ -1,4 +1,6 @@
-<?php include_once 'header.php';?>
+<?php include_once 'header.php';
+date_default_timezone_set('America/Caracas');
+?>
 
 <!-- Agregar -->
 <?php
@@ -15,18 +17,12 @@
          $nombre_err = "This field is required.";
       } else {
          $nombre = ucfirst(trim($_POST["nombre"]));
-         if (!ctype_alpha($nombre)) {
-            $nombre_err = "Invalid name format.";
-         }
       }
 
       if (empty(trim($_POST["herramienta"]))) {
          $herramienta_err = "This field is required.";
       } else {
          $herramienta = ucfirst(trim($_POST["herramienta"]));
-         if (!ctype_alpha($herramienta)) {
-            $herramienta_err = "Invalid name format.";
-         }
       }
 
 
@@ -34,9 +30,6 @@
          $ubicacion_err = "This field is required.";
       } else {
          $ubicacion = trim($_POST["ubicacion"]);
-         if (!ctype_alpha($ubicacion)) {
-            $ubicacion_err = "Please enter a valid age number";
-         }
       }
 
 
@@ -44,16 +37,13 @@
          $responsable_err = "This field is required.";
       } else {
          $responsable = trim($_POST["responsable"]);
-         if (!ctype_alpha($responsable)) {
-            $responsable_err = "Please enter a valid age number";
-         }
       }
 
 
       # Check input errors before inserting data into database
       if (empty($nombre_err) && empty($herramienta_err) && empty($ubicacion_err) && empty($responsable_err)) {
          # Preapre an insert statement
-         $sql = "INSERT INTO articulos (nombre, herramienta, ubicacion, responsable) VALUES (?, ?, ?, ?)";
+         $sql = "INSERT INTO salida (nombre, herramienta, ubicacion, responsable) VALUES (?, ?, ?, ?)";
 
          if ($stmt = mysqli_prepare($link, $sql)) {
             # Bind variables to the prepared statement as parameters
@@ -67,8 +57,17 @@
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
+
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "salida añadida";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
             echo "<script>" . "alert('Nuevo resgistro de salida creado.');" . "</script>";
-            echo "<script>" . "window.location.href='./inventario.php'" . "</script>";
+            echo "<script>" . "window.location.href='./salida.php'" . "</script>";
             exit;
             } else {
             echo "Ha ocurrido un error, intente más tarde";
@@ -143,7 +142,7 @@
 }
 
 .b-editar{
-      width: 50px;
+      width: 50px; 
       height: 30px;
       background-color: #2e57af;
 }
@@ -278,7 +277,7 @@
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 28%; color: #2e57af; letter-spacing: 2px;"><b>Agregar artículo</b></h5>
+            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 28%; color: #2e57af; letter-spacing: 2px;"><b>Agregar Salida</b></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

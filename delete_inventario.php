@@ -2,7 +2,7 @@
 # Process delete operation only if URL contain id parameter
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
   # Include connection
-  require_once "./config.php";
+  require_once "config.php";
 
   # Get URL parameter
   $id = trim($_GET["id"]);
@@ -20,7 +20,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     # Execute the statement
     if (mysqli_stmt_execute($stmt)) {
       echo "<script>" . "alert('Artículo eliminado de manera exitosa!');" . "</script>";
-      echo "<script>" . "window.location.href='./inventario.php'" . "</script>";
+      echo "<script>" . "window.location.href='inventario.php'" . "</script>";
       exit;
     } else {
       echo "Ha ocurrido un error, intente más tarde";
@@ -34,6 +34,6 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
   mysqli_close($link);
 } else {
   # Redirect to index page if URL doesn't contain id parameter
-  echo "<script>" . "window.location.href='./inventario.php'" . "</script>";
+  echo "<script>" . "window.location.href='inventario.php'" . "</script>";
   exit;
 }

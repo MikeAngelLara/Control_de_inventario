@@ -1,4 +1,6 @@
-<?php include_once 'header.php';?> 
+<?php include_once 'header.php';
+date_default_timezone_set('America/Caracas');
+?> 
 
 <?php
       # Include connection
@@ -14,9 +16,6 @@
          $nombre_err = "This field is required.";
       } else {
          $nombre = ucfirst(trim($_POST["nombre"]));
-         if (!ctype_alpha($nombre)) {
-            $nombre_err = "Invalid name format.";
-         }
       }
 
 
@@ -24,9 +23,6 @@
          $codigo_err = "This field is required.";
       } else {
          $codigo = trim($_POST["codigo"]);
-         if (!ctype_alpha($codigo)) {
-            $codigo_err = "Please enter a valid age number";
-         }
       }
 
       # Check input errors before inserting data into database
@@ -44,6 +40,15 @@
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
+
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "categoria añadida";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
             echo "<script>" . "alert('Nueva categoría creada.');" . "</script>";
             echo "<script>" . "window.location.href='./categorias.php'" . "</script>";
             exit;
@@ -199,7 +204,7 @@
                                                    </tr>
                                              </thead>
                                              <tbody>
-                                                   <?php  
+                                                   <?php   
                                                       if ($result->num_rows > 0) {
                                                          while($row = $result->fetch_assoc()) {
                                                    ?>

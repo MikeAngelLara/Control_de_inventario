@@ -89,7 +89,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     $id = trim($_GET["id"]);
  
     # Prepare a select statement
-    $sql = "SELECT * FROM articulos WHERE id = ?";
+    $sql = "SELECT * FROM proveedores WHERE id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       # Bind variables to the prepared statement as parameters
@@ -221,8 +221,8 @@ box-shadow: 0px 15px 28px -3px rgba(51,82,255,0.14);
         <form action="<?= htmlspecialchars(basename($_SERVER["REQUEST_URI"]));  ?>" class="bg-light p-4 border" method="post" novalidate>
           <div class="row gy-3">
             <div class="col-lg-6 center">
-              <label for="nombre" class="form-label"><b>Nombre</b></label>
-              <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $nombre; ?>">
+              <label for="nombre" class="form-label"><b>NOMBRE</b></label>
+              <input type="text" class="form-control" name="nombreAventura" id="nombre" value="<?= $nombre; ?>">
               <small class="text-danger"><?= $nombre_err; ?></small>
             </div>
             <div class="col-lg-6 center">
