@@ -15,39 +15,25 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     $nombre_err = "This field is required.";
   } else {
     $nombre = ucfirst(trim($_POST["nombre"]));
-    if (!ctype_alpha($nombre)) {
-      $nombre_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["rif"]))) {
     $rif_err = "This field is required.";
   } else {
     $rif = ucfirst(trim($_POST["rif"]));
-    if (!ctype_alpha($rif)) {
-      $rif_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["direccion"]))) {
     $direccion_err = "This field is required.";
   } else {
     $direccion = trim($_POST["direccion"]);
-    if (!ctype_alpha($direccion)) {
-      $direccion_err = "Please enter a valid age number";
-    }
   }
 
   if (empty(trim($_POST["telefonos"]))) {
     $telefonos_err = "This field is required.";
   } else {
     $telefonos = trim($_POST["telefonos"]);
-    if (!ctype_alpha($telefonos)) {
-      $telefonos_err = "Please enter a valid age number";
-    }
   }
-
-
 
 
   # Check input errors before updating data from database
@@ -86,7 +72,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
   # Check if URL contains id parameter before processing further
   if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     # Get URL paramater
-    $id = trim($_GET["id"]);
+    $id = trim($_GET["id"]); 
  
     # Prepare a select statement
     $sql = "SELECT * FROM proveedores WHERE id = ?";

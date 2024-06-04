@@ -1,6 +1,6 @@
 <?php
 # Include connection
-require_once "./config.php";
+require_once "./config.php"; 
 
 # Define variables and initialize with empty values
 $nombre_err = $herramienta_err = $ubicacion_err = $responsable_err = $fecha_err ="";
@@ -15,36 +15,24 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     $nombre_err = "This field is required.";
   } else {
     $nombre = ucfirst(trim($_POST["nombre"]));
-    if (!ctype_alpha($nombre)) {
-      $nombre_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["herramienta"]))) {
     $herramienta_err = "This field is required.";
   } else {
     $herramienta = ucfirst(trim($_POST["herramienta"]));
-    if (!ctype_alpha($herramienta)) {
-      $herramienta_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["ubicacion"]))) {
     $ubicacion_err = "This field is required.";
   } else {
     $ubicacion = trim($_POST["ubicacion"]);
-    if (!ctype_alpha($ubicacion)) {
-      $ubicacion_err = "Please enter a valid age number";
-    }
   }
 
   if (empty(trim($_POST["responsable"]))) {
     $responsable_err = "This field is required.";
   } else {
     $responsable = trim($_POST["responsable"]);
-    if (!ctype_alpha($responsable)) {
-      $responsable_err = "Please enter a valid age number";
-    }
   }
 
 

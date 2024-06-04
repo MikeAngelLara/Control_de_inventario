@@ -5,7 +5,7 @@ require_once "./config.php";
 # Define variables and initialize with empty values
 $categoria_err = $nombre_err = $ud_err = $existencia_err = "";
 $categoria = $nombre = $ud = $existencia = "";
-
+ 
 # Processing form data when form is submitted
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
   # Get hidden input value
@@ -15,36 +15,24 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     $categoria_err = "This field is required.";
   } else {
     $categoria = ucfirst(trim($_POST["categoria"]));
-    if (!ctype_alpha($categoria)) {
-      $categoria_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["nombre"]))) {
     $nombre_err = "This field is required.";
   } else {
     $nombre = ucfirst(trim($_POST["nombre"]));
-    if (!ctype_alpha($nombre)) {
-      $nombre_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["ud"]))) {
     $ud_err = "This field is required.";
   } else {
     $ud = trim($_POST["ud"]);
-    if (!ctype_alpha($ud)) {
-      $ud_err = "Please enter a valid age number";
-    }
   }
 
   if (empty(trim($_POST["existencia"]))) {
     $existencia_err = "This field is required.";
   } else {
     $existencia = trim($_POST["existencia"]);
-    if (!ctype_digit($existencia)) {
-      $existencia_err = "Please enter a valid age number";
-    }
   }
 
 

@@ -9,24 +9,18 @@ $nombre = $codigo = "";
 # Processing form data when form is submitted
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
   # Get hidden input value
-  $id = $_POST["id"];
+  $id = $_POST["id"]; 
 
   if (empty(trim($_POST["nombre"]))) {
     $nombre_err = "This field is required.";
   } else {
     $nombre = ucfirst(trim($_POST["nombre"]));
-    if (!ctype_alpha($nombre)) {
-      $nombre_err = "Invalid name format.";
-    }
   }
 
   if (empty(trim($_POST["codigo"]))) {
     $codigo_err = "This field is required.";
   } else {
     $codigo = ucfirst(trim($_POST["codigo"]));
-    if (!ctype_alpha($codigo)) {
-      $codigo_err = "Invalid name format.";
-    }
   }
 
 
