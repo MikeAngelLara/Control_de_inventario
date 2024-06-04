@@ -213,7 +213,7 @@ date_default_timezone_set('America/Caracas');
                                                          <td><?php echo $row['nombre'] ?></td>
                                                          <td><?php echo $row['codigo'] ?></td>
                                                          <td>
-                                                            <a href="./update_inventario.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
+                                                            <a href="./update_categorias.php?id=<?= $row["id"]; ?>" class="btn b-editar btn-sm">
                                                             <i class="fa fa-pencil" style="color: #fff;"></i>
                                                             </a>&nbsp;
                                                             <a href="#Modal-d" data-toggle="modal" class="btn b-delete btn-sm">

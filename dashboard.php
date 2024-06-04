@@ -97,8 +97,8 @@ header .current-date{
                   <div class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
-                           <div class="page_title"> 
-                              <h2>Principal</h2>
+                           <div class="page_title" style="text-align: center;"> 
+                              <h2><b>Principal</b></h2>
                            </div>
                         </div>
                      </div>
