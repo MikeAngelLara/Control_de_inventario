@@ -1,5 +1,6 @@
 <?php
 // Initialize the session
+date_default_timezone_set('America/Caracas');
 session_start();
  
 // Check if the user is logged in, otherwise redirect to login page
@@ -10,7 +11,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
  
 // Include config file
 require_once "config.php";
- 
+
+
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
@@ -48,11 +50,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $param_id = $_SESSION["id"];
+            
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Password updated successfully. Destroy the session, and redirect to login page
+
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+                $fecha_hora = date('Y-m-d H:i:s');
+                $accion = "Cambio de Contraseña";
+                $param_id = $_SESSION["id"];
+                $consulta_bitacora = "INSERT INTO bitacora (nombre, fecha_accion, id_usuario) VALUES ('$accion','$fecha_hora','$param_id')";
+                mysqli_query($link, $consulta_bitacora);
+                // __________________________________________________________________________________________BITACORA____________________________________________________________________________
+
                 session_destroy();
                 header("location: index.php");
                 exit();
@@ -63,8 +74,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
-    }
-    
+    } 
+
+//Insertar Datos a la Tabla Bitacora
+
+
     // Close connection
     mysqli_close($link);
 }

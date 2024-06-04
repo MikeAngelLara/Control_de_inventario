@@ -166,7 +166,7 @@
                      </div>                                    
 
                      <!-- row -->
-                     <div class="row">
+                     <div class="row"> 
                         
                         <!-- table section -->
                         <div class="col-md-12">

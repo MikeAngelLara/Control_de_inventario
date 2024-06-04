@@ -143,17 +143,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle" style="background-color: #2e57af;"><i class="fa fa-bars"></i></button>         
                         <div class="right_topbar">
                            <div class="icon_info">
-                              <ul>
-                                 <li>
-                                    <a href="#" data-toggle="dropdown"><i class="fa fa-bell-o" style="color: #fff;"></i><span class="badge">0</span>
-                                       <div class="dropdown-menu">
-                                          <a class="dropdown-item" href="#">Dropdown link</a>
-                                          <a class="dropdown-item" href="#">Dropdown link</a>
-                                          <a class="dropdown-item" href="#">Dropdown link</a>
-                                       </div>
-                                    </a>
-                                 </li>
-                              </ul>                            
+                          
                               <ul class="user_profile_dd">
                                  <li style="background-color: #2e57af">
                                     <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/logo/admin.png" alt="#" /><span class="name_user"><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></span></a>

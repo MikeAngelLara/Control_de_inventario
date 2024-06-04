@@ -167,7 +167,19 @@ header .current-date{
                               <div class="counter_no">
                                  <div>
                                     <p class="total_no" style="color: black;">Bitácora</p>
-                                    <p class="head_couter" style="color: black;">**** cambios en el inventario</p>
+                                    <p class="head_couter" style="color: black;">
+                                    <b>
+                                    <?php 
+                                    $sql = "SELECT COUNT(*) AS total_filas FROM bitacora";
+                                    $result = mysqli_query($link, $sql);
+                                    
+                                    $row = mysqli_fetch_assoc($result);
+                                    $numero_filas = $row["total_filas"]; 
+                                    
+                                    echo $numero_filas;
+                                    ?>
+                                    </b>
+                                      cambios en el sistema</p>
                                  </div>
                               </div>
                            </div>
@@ -249,20 +261,19 @@ header .current-date{
 
 
       <!-- Modal Bitacora -->
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
          <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header">
                <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 38%; color: #2e57af; letter-spacing: 2px;"><b>Bitácora</b></h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
-               <div class="modal-body">
+               <div class="modal-body" style="text-align: center;">
+               <p style="font-size: 15px;"><b>Aquí podrás descargar la bitácora que contiene los cambios realizados en el sistema.</b></p>
                      <div>
                      <!-- form starts here -->
                      <form style="height: 100%; wight: 100%;" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="bg-light p-4 shadow-sm" method="post" novalidate>
-                        <div class="row gy-3" >
-
-                        </div>
+                     <div class="btn btn-primary" style="background-color: #2e57af; border: none; width: 80px; "><a href="./GenerarPDF/Bitacora.php" style="color:#FFF; text-decoration:none;" target="_blank"><img src="./images/logo/pdf.png" alt="" style="width: 40px;"></a></div>
                      </form>
                      <!-- form ends here -->
                      </div>

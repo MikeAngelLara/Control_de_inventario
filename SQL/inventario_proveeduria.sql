@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2024 a las 02:54:57
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 05-06-2024 a las 04:18:52
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `articulos` (
   `nombre` varchar(255) NOT NULL,
   `ud` varchar(255) NOT NULL,
   `existencia` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `articulos`
@@ -114,7 +114,7 @@ CREATE TABLE `articulos_lagunetica` (
   `nombre` varchar(255) NOT NULL,
   `ud` varchar(255) NOT NULL,
   `existencia` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `articulos_lagunetica`
@@ -139,6 +139,28 @@ INSERT INTO `articulos_lagunetica` (`id`, `categoria`, `nombre`, `ud`, `existenc
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `bitacora`
+--
+
+CREATE TABLE `bitacora` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `fecha_accion` datetime NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`id`, `nombre`, `fecha_accion`, `id_usuario`) VALUES
+(2, 'Cambio de Contrasena', '2024-06-05 04:11:13', 3),
+(3, 'Cambio de Contrasena', '2024-06-05 04:13:23', 3),
+(4, 'Cambio de Contrasena', '2024-06-04 22:17:23', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categorias`
 --
 
@@ -146,7 +168,7 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `codigo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -181,7 +203,7 @@ CREATE TABLE `prestamos` (
   `devuelto` varchar(255) NOT NULL,
   `observaciones` text NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `prestamos`
@@ -205,7 +227,7 @@ CREATE TABLE `proveedores` (
   `rif` varchar(255) NOT NULL,
   `direccion` varchar(300) NOT NULL,
   `telefonos` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -227,7 +249,7 @@ CREATE TABLE `salida` (
   `ubicacion` varchar(255) NOT NULL,
   `responsable` varchar(255) NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `salida`
@@ -247,14 +269,15 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(3, 'Administrador', '$2y$10$IGpeRcbcXBAQ7ZindHnRPObp.bYUoN1af1FjbHo.5ehaFSSLOES2y', '0000-00-00 00:00:00');
+(3, 'Administrador', '$2y$10$XeAF7h4kTpqrAs2xh0km1uoUoaRxOfIgwHj1OdVEgxs8LuohP4NY.', '0000-00-00 00:00:00'),
+(8, 'Administrador2', '$2y$10$Bv9TRPreC3xIjnh1zSJjZ.CcpbkPfKHRRdngbZnPYbnyXd/z52QR.', '0000-00-00 00:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -271,6 +294,13 @@ ALTER TABLE `articulos`
 --
 ALTER TABLE `articulos_lagunetica`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `categorias`
@@ -319,6 +349,12 @@ ALTER TABLE `articulos_lagunetica`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
+-- AUTO_INCREMENT de la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
@@ -346,7 +382,17 @@ ALTER TABLE `salida`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
