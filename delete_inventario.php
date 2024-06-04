@@ -13,7 +13,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
   if ($stmt = mysqli_prepare($link, $sql)) {
     # Bind variables to the prepared statement as parameters
     mysqli_stmt_bind_param($stmt, "i", $param_id);
-
+ 
     # Set parameters
     $param_id = $id;
 
