@@ -39,21 +39,23 @@ date_default_timezone_set('America/Caracas');
          $responsable = trim($_POST["responsable"]);
       }
 
-
+      $fecha = date('Y-m-d H:i:s');
+ 
       # Check input errors before inserting data into database
       if (empty($nombre_err) && empty($herramienta_err) && empty($ubicacion_err) && empty($responsable_err)) {
          # Preapre an insert statement
-         $sql = "INSERT INTO salida (nombre, herramienta, ubicacion, responsable) VALUES (?, ?, ?, ?)";
+         $sql = "INSERT INTO salida (nombre, herramienta, ubicacion, responsable, fecha) VALUES (?, ?, ?, ?, ?)";
 
          if ($stmt = mysqli_prepare($link, $sql)) {
             # Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_nombre, $param_herramienta, $param_ubicacion, $param_responsable);
+            mysqli_stmt_bind_param($stmt, "sssss", $param_nombre, $param_herramienta, $param_ubicacion, $param_responsable, $param_fecha);
 
             # Set parameters
             $param_nombre = $nombre;
             $param_herramienta = $herramienta;
             $param_ubicacion = $ubicacion;
             $param_responsable = $responsable;
+            $param_fecha = $fecha;
 
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {

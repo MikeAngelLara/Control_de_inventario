@@ -7,8 +7,8 @@ date_default_timezone_set('America/Caracas');
       require_once "./config.php";
 
       # Define variables and initialize with empty values
-      $nombre_err = $herramienta_err = $estado_err = $ubicacion_err = $devuelto_err = $observaciones_err ="";
-      $nombre = $herramienta = $estado = $ubicacion = $devuelto = $observaciones = "";
+      $nombre_err = $herramienta_err = $estado_err = $ubicacion_err = $devuelto_err = $observaciones_err = $fecha_err = "";
+      $nombre = $herramienta = $estado = $ubicacion = $devuelto = $observaciones = $fecha = "";
 
       # Processing form data when form is submitted
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,22 +42,23 @@ date_default_timezone_set('America/Caracas');
      } else {
         $devuelto = trim($_POST["devuelto"]);
      }
-
+ 
      if (empty(trim($_POST["observaciones"]))) {
         $observaciones_err = "This field is required.";
      } else {
         $observaciones = trim($_POST["observaciones"]);
      }
 
+     $fecha = date('Y-m-d H:i:s');
 
       # Check input errors before inserting data into database
       if (empty($nombre_err) && empty($herramienta_err) && empty($estado_err) && empty($ubicacion_err) && empty($devuelto_err) && empty($observaciones_err)) {
          # Preapre an insert statement
-         $sql = "INSERT INTO prestamos (nombre, herramienta, estado, ubicacion, devuelto, observaciones) VALUES (?, ?, ?, ?, ?, ?)";
+         $sql = "INSERT INTO prestamos (nombre, herramienta, estado, ubicacion, devuelto, observaciones, fecha) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
          if ($stmt = mysqli_prepare($link, $sql)) {
             # Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssss", $param_nombre, $param_herramienta, $param_estado, $param_ubicacion, $param_devuelto, $param_observaciones);
+            mysqli_stmt_bind_param($stmt, "sssssss", $param_nombre, $param_herramienta, $param_estado, $param_ubicacion, $param_devuelto, $param_observaciones, $param_fecha);
 
             # Set parameters
             $param_nombre = $nombre;
@@ -66,8 +67,8 @@ date_default_timezone_set('America/Caracas');
             $param_ubicacion = $ubicacion;
             $param_devuelto = $devuelto;
             $param_observaciones = $observaciones;
-
-
+            $param_fecha = $fecha;
+            
             # Execute the statement
             if (mysqli_stmt_execute($stmt)) {
 
