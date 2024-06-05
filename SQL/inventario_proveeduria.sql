@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2024 a las 23:36:00
+-- Tiempo de generación: 05-06-2024 a las 04:38:28
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -161,7 +161,16 @@ CREATE TABLE `bitacora` (
 
 INSERT INTO `bitacora` (`id`, `nombre`, `fecha_accion`, `id_usuario`) VALUES
 (34, 'Cierre de sesión', '2024-06-04 23:34:21', 3),
-(35, 'Inicio de Sesion', '2024-06-04 23:34:25', 3);
+(35, 'Inicio de Sesion', '2024-06-04 23:34:25', 3),
+(36, 'Cierre de sesión', '2024-06-04 23:37:35', 3),
+(37, 'Inicio de Sesion', '2024-06-05 03:35:50', 3),
+(38, 'Prestamo añadido', '2024-06-04 22:05:44', 3),
+(39, 'Prestamo añadido', '2024-06-04 22:12:26', 3),
+(40, 'Prestamo añadido', '2024-06-04 22:15:47', 3),
+(41, 'Prestamo añadido', '2024-06-04 22:18:00', 3),
+(42, 'Prestamo añadido', '2024-06-04 22:20:22', 3),
+(43, 'salida añadida', '2024-06-04 22:24:41', 3),
+(44, 'Cierre de sesión', '2024-06-05 04:28:47', 3);
 
 -- --------------------------------------------------------
 
@@ -215,9 +224,8 @@ CREATE TABLE `prestamos` (
 --
 
 INSERT INTO `prestamos` (`id`, `nombre`, `herramienta`, `estado`, `ubicacion`, `devuelto`, `observaciones`, `fecha`) VALUES
-(5, 'Carlos Martinez', 'Pala y pico', 'Funcional', 'POOL', 'no', 'Entregado de manera intacta', '0000-00-00 00:00:00'),
-(6, 'Miguel Lara', 'Metro de color negro', 'Funcional', 'POOL', 'no', 'Estar pendiente', '0000-00-00 00:00:00'),
-(7, 'Luis', 'Cepillo', 'operativo', 'DEM', 'si', 'Entregado de manera intacta', '0000-00-00 00:00:00');
+(11, 'Miguel', 'Metro', 'operativo', 'POOL', 'si', 'Entregado de manera intacta', '2024-06-04 22:18:00'),
+(12, 'Carlos Santana', 'Destornillador', 'operativo', 'DEM', 'si', 'Entregado de manera intacta', '2024-06-04 22:20:22');
 
 -- --------------------------------------------------------
 
@@ -260,10 +268,7 @@ CREATE TABLE `salida` (
 --
 
 INSERT INTO `salida` (`id`, `nombre`, `herramienta`, `ubicacion`, `responsable`, `fecha`) VALUES
-(1, 'CarlosSantana', 'Martillo', 'DEM', 'Ramiro', '2024-05-28 02:17:51'),
-(2, 'Miguel Lara', 'Pala y pico', 'POOL', 'RAMIRO DIAZ', '0000-00-00 00:00:00'),
-(3, 'Luis Perez', 'Destornillador', 'POOL', 'RAMIRO DIAZ', '0000-00-00 00:00:00'),
-(4, 'Miguel', 'Cepillo', 'DEM', 'RAMIRO DIAZ', '0000-00-00 00:00:00');
+(5, 'Lucía Vargas', 'Galon de pintura Blanca', 'DEM', 'RAMIRO', '2024-06-04 22:24:40');
 
 -- --------------------------------------------------------
 
@@ -358,7 +363,7 @@ ALTER TABLE `articulos_lagunetica`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -370,7 +375,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
@@ -382,7 +387,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `salida`
 --
 ALTER TABLE `salida`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
